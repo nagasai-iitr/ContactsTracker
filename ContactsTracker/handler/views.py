@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 from .models import Contact
 import json
-# Create your views here.
 
+@csrf_exempt
 def identify_view(request):
     if request.method == 'POST':
         data = json.loads(request.body)
