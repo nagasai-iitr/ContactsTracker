@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sf_&z2w(q%yw8re(sphwsq*+69m&zza9nik$v#bqh6an-=5a$y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['contactstracker.onrender.com']
 
 
 # Application definition
