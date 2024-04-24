@@ -76,14 +76,16 @@ def identify_view(request):
         response_data = {
             "contact": {
                 "primaryContactId": primary_contact.id,
-                "emails": [primary_contact.email],
+                "emails": [primary_contact.email] if primary_contact.email is not None else [],
                 "phoneNumbers": [primary_contact.phoneNumber],
                 "secondaryContactIds": []
             }
         }
         for contact in secondary_contacts:
-            response_data["contact"]["emails"].append(contact.email)
-            response_data["contact"]["phoneNumbers"].append(contact.phoneNumber)
+            if contact.email is not None:
+                response_data["contact"]["emails"].append(contact.email)
+            if contact.phoneNumber is not None:
+                response_data["contact"]["phoneNumbers"].append(contact.phoneNumber)
             response_data["contact"]["secondaryContactIds"].append(contact.id)
             
         return JsonResponse(response_data)
