@@ -65,7 +65,7 @@ def identify_view(request):
                 contact.linkedId = primary_id
                 contact.save()
             # update the newer primary contact linking to oldest primary contact
-            temp_contact.temp_contact = 'secondary'
+            temp_contact.linkPrecedence = 'secondary'
             temp_contact.linkedId = primary_id
             temp_contact.save()
         
