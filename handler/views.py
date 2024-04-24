@@ -13,8 +13,18 @@ def identify_view(request):
         email = data.get('email')
         phoneNumber = data.get('phoneNumber')
         
+        if not email and not phoneNumber:
+            return JsonResponse({'message': "incomplete data"})
+        
         # get the primary contacts for our request
-        primary_contacts = Contact.objects.filter(Q(email=email) | Q(phoneNumber=phoneNumber), linkPrecedence='primary').order_by('createdAt')#.values()
+        query = Q()
+        # handle the cases with None input
+        if email:
+            query |= Q(email = email)
+        if phoneNumber:
+            query |= Q(phoneNumber = phoneNumber)
+            
+        primary_contacts = Contact.objects.filter(query, linkPrecedence='primary').order_by('createdAt')#.values()
         
         # case 1, if there is no new information
         if Contact.objects.filter(Q(email=email) & Q(phoneNumber=phoneNumber)).exists():
