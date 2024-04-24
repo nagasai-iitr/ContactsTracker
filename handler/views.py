@@ -77,7 +77,7 @@ def identify_view(request):
             "contact": {
                 "primaryContactId": primary_contact.id,
                 "emails": [primary_contact.email] if primary_contact.email is not None else [],
-                "phoneNumbers": [primary_contact.phoneNumber],
+                "phoneNumbers": [primary_contact.phoneNumber] if primary_contact.phoneNumber is not None else [],
                 "secondaryContactIds": []
             }
         }
