@@ -82,9 +82,9 @@ def identify_view(request):
             }
         }
         for contact in secondary_contacts:
-            if contact.email is not None:
+            if contact.email is not None and contact.email not in response_data["contact"]["emails"]:
                 response_data["contact"]["emails"].append(contact.email)
-            if contact.phoneNumber is not None:
+            if contact.phoneNumber is not None and contact.phoneNumber not in response_data["contact"]["phoneNumbers"]:
                 response_data["contact"]["phoneNumbers"].append(contact.phoneNumber)
             response_data["contact"]["secondaryContactIds"].append(contact.id)
             
